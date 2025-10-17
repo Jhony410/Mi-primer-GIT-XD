@@ -1,1 +1,254 @@
-hola mundo 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orden de Trabajo</title>
+    <style>
+        /* Reset básico */
+        * { box-sizing: border-box; }
+        body { font-family: Arial, Helvetica, sans-serif; margin: 0; padding: 20px; background: #f4f6f8; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 18px; border: 1px solid #cfd8dc; }
+
+        /* Encabezado */
+        .header { display:flex; justify-content:space-between; align-items:flex-start; }
+        .company { max-width:60%; }
+        .company h1 { margin:0; font-size:20px; }
+        .company p { margin: 2px 0; font-size:12px; color:#333; }
+        .logo { text-align:right; }
+        .logo img { max-width:160px; }
+
+        h2.title { color: #0b66a3; margin: 8px 0 18px 0; letter-spacing:1px; }
+
+        /* Form grid */
+        .grid { display: grid; grid-template-columns: 1fr 220px 1fr; gap:8px; }
+        .field { border:1px solid #1e73be; padding:6px; background:#e9f3fb; }
+        .field label { font-weight:700; font-size:12px; display:block; color:white; background:#1e73be; padding:6px; margin:-6px -6px 6px -6px; }
+        .large { grid-column: 1 / -1; }
+
+        /* Tables for work/materials */
+        table { width:100%; border-collapse:collapse; margin-top:10px; }
+        th, td { border:1px solid #1e73be; padding:6px; font-size:13px; }
+        th { background:#1e73be; color:white; font-weight:700; }
+        .muted { background:#f4faff; }
+
+        .right { text-align:right; }
+        .center { text-align:center; }
+
+        /* Totals box */
+        .totals { width:320px; float:right; margin-top:8px; border:1px solid #b0cfe6; }
+        .totals .row { display:flex; justify-content:space-between; padding:8px; border-bottom:1px solid #e0eef8; }
+        .totals .row strong { color:#0b3b5a; }
+
+        /* Footer sign block */
+        .signs { display:flex; gap:12px; margin-top:18px; }
+        .sign { flex:1; border:1px solid #cfdbe8; padding:10px; min-height:80px; }
+
+        /* Controls */
+        .controls { margin-top:12px; }
+        button { background:#1e73be; color:white; border:none; padding:8px 12px; cursor:pointer; border-radius:4px; }
+        button[disabled] { opacity:0.6; cursor:default; }
+
+        /* Print styles */
+        @media print {
+            body { background: white; margin:0; }
+            .container { border: none; padding: 0; box-shadow: none; }
+            .controls { display:none !important; }
+            .logo img { max-width:140px; }
+            .totals { float:none; width:100%; margin-top:12px; }
+            .grid { grid-template-columns: 1fr 180px 1fr; gap:4px; }
+            th, td { font-size:11px; }
+            input, textarea, button { border: none; }
+            /* Ensure content uses the full page width when printing */
+            .container { width: auto; max-width: none; }
+            @page { size: A4; margin: 10mm; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="company">
+                <h1>Nombre de la empresa</h1>
+                <p>123 Unidad de dirección de la empresa</p>
+                <p>Cuarto piso, Suite 412</p>
+                <p>Ciudad de la Compañía, NY 11101</p>
+                <p>321-654-9870</p>
+            </div>
+            <div class="logo">
+                <!-- Puedes reemplazar con tu logo -->
+                <img src="https://dummyimage.com/160x60/1e73be/fff.png&text=TU+LOGO" alt="logo">
+                <h2 class="title">ORDEN DE TRABAJO</h2>
+            </div>
+        </div>
+
+        <form id="workOrder">
+            <div class="grid">
+                <div class="field large">
+                    <label>Nombre del cliente</label>
+                    <input type="text" name="cliente" style="width:100%; padding:6px; font-size:14px;" placeholder="Nombre del cliente">
+                </div>
+
+                <div class="field">
+                    <label>Teléfono</label>
+                    <input type="text" name="telefono" style="width:100%; padding:6px;" placeholder="(000) 000-0000">
+                </div>
+
+                <div class="field">
+                    <label>Fecha del pedido</label>
+                    <input type="date" name="fechaPedido" style="width:100%; padding:6px;">
+                </div>
+
+                <div class="field">
+                    <label>Número de pedido</label>
+                    <input type="text" name="numeroPedido" style="width:100%; padding:6px;">
+                </div>
+
+                <div class="field large muted">
+                    <label>Lugar de trabajo</label>
+                    <input type="text" name="lugar" style="width:100%; padding:6px;">
+                </div>
+
+                <div class="field large">
+                    <label>Términos de servicio / Descripción del trabajo</label>
+                    <textarea name="descripcion" rows="4" style="width:100%; padding:6px;"></textarea>
+                </div>
+            </div>
+
+            <!-- Horas / Mano de obra -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Descripción (Laboral)</th>
+                        <th>Horas</th>
+                        <th>Tasa</th>
+                        <th>Importe</th>
+                    </tr>
+                </thead>
+                <tbody id="laborRows">
+                    <tr>
+                        <td><input type="text" name="lab_desc_1" style="width:100%; border:none;"></td>
+                        <td><input type="number" name="lab_hours_1" step="0.25" value="2.25" style="width:100%; border:none;"></td>
+                        <td><input type="number" name="lab_rate_1" step="0.01" value="32.00" style="width:100%; border:none;"></td>
+                        <td class="right">$<span class="lab_amount">72.00</span></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="lab_desc_2" style="width:100%; border:none;"></td>
+                        <td><input type="number" name="lab_hours_2" step="0.25" value="11.00" style="width:100%; border:none;"></td>
+                        <td><input type="number" name="lab_rate_2" step="0.01" value="40.00" style="width:100%; border:none;"></td>
+                        <td class="right">$<span class="lab_amount">440.00</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Materiales -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Descripción del material</th>
+                        <th>Cantidad</th>
+                        <th>Precio por</th>
+                        <th>Importe</th>
+                    </tr>
+                </thead>
+                <tbody id="materialRows">
+                    <tr>
+                        <td><input type="text" name="mat_desc_1" style="width:100%; border:none;" value="Material A"></td>
+                        <td><input type="number" name="mat_qty_1" step="1" value="17" style="width:100%; border:none;"></td>
+                        <td><input type="number" name="mat_price_1" step="0.01" value="6.00" style="width:100%; border:none;"></td>
+                        <td class="right">$<span class="mat_amount">102.00</span></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="mat_desc_2" style="width:100%; border:none;" value="Material B"></td>
+                        <td><input type="number" name="mat_qty_2" step="1" value="300" style="width:100%; border:none;"></td>
+                        <td><input type="number" name="mat_price_2" step="0.01" value="2.75" style="width:100%; border:none;"></td>
+                        <td class="right">$<span class="mat_amount">825.00</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="clear:both;"></div>
+
+            <div class="totals" id="totals">
+                <div class="row"><span>Material</span><strong>$<span id="totalMaterial">927.00</span></strong></div>
+                <div class="row"><span>Subtotal</span><strong>$<span id="subtotal">1,439.00</span></strong></div>
+                <div class="row"><span>Impositivo (%)</span><strong><span id="taxRate">6.148%</span></strong></div>
+                <div class="row"><span>Impuesto total</span><strong>$<span id="taxAmount">88.47</span></strong></div>
+                <div class="row"><span>Otro</span><strong>$<span id="otherCost">150.00</span></strong></div>
+                <div class="row"><span>Total</span><strong>$<span id="grandTotal">1,677.47</span></strong></div>
+            </div>
+
+            <div style="clear:both"></div>
+
+            <div class="signs">
+                <div class="sign">
+                    <strong>Aprobar el trabajo</strong>
+                    <p>Nombre y firma:</p>
+                </div>
+                <div class="sign">
+                    <strong>Notificaciones</strong>
+                    <p>Fecha de aprobación:</p>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button type="button" id="calcBtn">Calcular totales</button>
+                <button type="button" id="printBtn">Imprimir</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Helper: format number as currency with 2 decimals
+        function fmt(v){ return Number(v).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2}); }
+
+        function parseNum(v){ return Number((v||0).toString().replace(/[^0-9\.-]+/g,'')) || 0; }
+
+        function calculate(){
+            // labor
+            const laborRows = document.querySelectorAll('#laborRows tr');
+            let laborTotal = 0;
+            laborRows.forEach((tr, idx) => {
+                const h = parseNum(tr.querySelector('input[name^="lab_hours_"]')?.value);
+                const r = parseNum(tr.querySelector('input[name^="lab_rate_"]')?.value);
+                const amount = h * r;
+                const span = tr.querySelector('.lab_amount');
+                if(span) span.textContent = fmt(amount);
+                laborTotal += amount;
+            });
+
+            // materials
+            const matRows = document.querySelectorAll('#materialRows tr');
+            let matTotal = 0;
+            matRows.forEach((tr)=>{
+                const q = parseNum(tr.querySelector('input[name^="mat_qty_"]')?.value);
+                const p = parseNum(tr.querySelector('input[name^="mat_price_"]')?.value);
+                const amount = q * p;
+                const span = tr.querySelector('.mat_amount');
+                if(span) span.textContent = fmt(amount);
+                matTotal += amount;
+            });
+
+            const other = parseNum(document.getElementById('otherCost')?.textContent) || 150.00;
+
+            const subtotal = laborTotal + matTotal + other;
+            const taxRate = 0.06148; // ejemplo 6.148%
+            const taxAmount = subtotal * taxRate;
+            const grand = subtotal + taxAmount;
+
+            document.getElementById('totalMaterial').textContent = fmt(matTotal);
+            document.getElementById('subtotal').textContent = fmt(subtotal);
+            document.getElementById('taxAmount').textContent = fmt(taxAmount);
+            document.getElementById('grandTotal').textContent = fmt(grand);
+            document.getElementById('taxRate').textContent = (taxRate*100).toFixed(3) + '%';
+        }
+
+        document.getElementById('calcBtn').addEventListener('click', calculate);
+        document.getElementById('printBtn').addEventListener('click', function(){ window.print(); });
+
+        // Calculate on load
+        window.addEventListener('load', calculate);
+    </script>
+</body>
+</html>

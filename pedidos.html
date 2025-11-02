@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realizar Pedido - Imprenta Online</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container nav-container">
+            <div class="logo">
+                <img src="assets/img/logo.png" alt="Imprenta Online Logo">
+            </div>
+            <nav class="main-nav">
+                <a href="index.html#servicios" class="nav-link">Servicios</a>
+                <a href="index.html#productos" class="nav-link">Productos</a>
+                <a href="index.html#libros" class="nav-link">Libros Publicados</a>
+                <a href="pedidos.html" class="nav-link">Realizar Pedido</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <form id="orderForm" class="order-form">
+            <h2 class="section-title">Solicitar Cotización</h2>
+            
+            <div class="form-group">
+                <label for="nombre">Nombre completo *</label>
+                <input type="text" id="nombre" name="nombre" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo electrónico *</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="telefono">Teléfono *</label>
+                <input type="tel" id="telefono" name="telefono" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tipo_trabajo">Tipo de trabajo *</label>
+                <select id="tipo_trabajo" name="tipo_trabajo" class="form-control" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="tarjetas">Tarjetas de Presentación</option>
+                    <option value="flyers">Flyers / Volantes</option>
+                    <option value="brochures">Brochures / Folletos</option>
+                    <option value="libro">Libro / Revista</option>
+                    <option value="banner">Banner / Vinilo</option>
+                    <option value="otro">Otro</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="cantidad">Cantidad *</label>
+                <input type="number" id="cantidad" name="cantidad" class="form-control" required min="1">
+            </div>
+
+            <div class="form-group">
+                <label for="tamano">Tamaño / Dimensiones</label>
+                <input type="text" id="tamano" name="tamano" class="form-control" placeholder="Ej: A4, 9x5cm, 2x1m">
+            </div>
+
+            <div class="form-group">
+                <label for="acabados">Acabados</label>
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="acabados[]" value="full-color"> Full Color
+                    </label>
+                    <label>
+                        <input type="checkbox" name="acabados[]" value="doble-cara"> Doble Cara
+                    </label>
+                    <label>
+                        <input type="checkbox" name="acabados[]" value="barniz"> Barniz UV
+                    </label>
+                    <label>
+                        <input type="checkbox" name="acabados[]" value="troquelado"> Troquelado
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="descripcion">Descripción detallada del trabajo *</label>
+                <textarea id="descripcion" name="descripcion" class="form-control" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="archivo">Adjuntar archivo (opcional)</label>
+                <input type="file" id="archivo" name="archivo" class="form-control" accept=".pdf,.jpg,.jpeg,.png,.ai,.psd">
+                <small>Formatos permitidos: PDF, JPG, PNG, AI, PSD. Máximo 10MB</small>
+            </div>
+
+            <div class="form-group">
+                <label for="fecha_entrega">Fecha deseada de entrega</label>
+                <input type="date" id="fecha_entrega" name="fecha_entrega" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn">Enviar Solicitud</button>
+            </div>
+        </form>
+    </div>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h3>Contacto</h3>
+                <ul class="footer-links">
+                    <li>Teléfono: (01) 123-4567</li>
+                    <li>Email: info@imprentaonline.com</li>
+                    <li>Dirección: Av. Principal 123</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Enlaces Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html#servicios">Servicios</a></li>
+                    <li><a href="index.html#productos">Productos</a></li>
+                    <li><a href="index.html#libros">Libros</a></li>
+                    <li><a href="pedidos.html">Pedidos</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Horario</h3>
+                <ul class="footer-links">
+                    <li>Lunes a Viernes: 9am - 6pm</li>
+                    <li>Sábados: 9am - 1pm</li>
+                    <li>Domingos: Cerrado</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

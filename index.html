@@ -2,144 +2,142 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orden de Trabajo</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Imprenta Online - Servicios de Impresión Profesional</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="company">
-                <h1>Nombre de la empresa</h1>
-                <p>123 Unidad de dirección de la empresa</p>
-                <p>Cuarto piso, Suite 412</p>
-                <p>Ciudad de la Compañía, NY 11101</p>
-                <p>321-654-9870</p>
-            </div>
+    <header class="main-header">
+        <div class="container nav-container">
             <div class="logo">
-                <!-- Puedes reemplazar con tu logo -->
-                <img src="https://dummyimage.com/160x60/1e73be/fff.png&text=TU+LOGO" alt="logo">
-                <h2 class="title">ORDEN DE TRABAJO</h2>
+                <img src="assets/img/logo.png" alt="Imprenta Online Logo">
+            </div>
+            <nav class="main-nav">
+                <a href="#servicios" class="nav-link">Servicios</a>
+                <a href="#productos" class="nav-link">Productos</a>
+                <a href="#libros" class="nav-link">Libros Publicados</a>
+                <a href="pedidos.html" class="nav-link">Realizar Pedido</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Tu Imprenta Digital de Confianza</h1>
+            <p>Ofrecemos servicios de impresión de alta calidad para todas tus necesidades. Desde tarjetas de presentación hasta libros, lo hacemos todo con excelencia.</p>
+            <a href="pedidos.html" class="btn">Solicitar Cotización</a>
+        </div>
+    </section>
+
+    <section id="servicios" class="services">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="assets/img/impresion-digital.jpg" alt="Impresión Digital">
+                    <div class="service-content">
+                        <h3>Impresión Digital</h3>
+                        <p>Impresión de alta calidad para pequeños y medianos tirajes con acabado profesional.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="assets/img/offset.jpg" alt="Impresión Offset">
+                    <div class="service-content">
+                        <h3>Impresión Offset</h3>
+                        <p>Para grandes volúmenes con la mejor calidad y costos competitivos.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="assets/img/gran-formato.jpg" alt="Gran Formato">
+                    <div class="service-content">
+                        <h3>Gran Formato</h3>
+                        <p>Banners, vinilos y lonas para publicidad exterior e interior.</p>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
-        <form id="workOrder">
-            <div class="grid">
-                <div class="field large">
-                    <label>Nombre del cliente</label>
-                    <input type="text" name="cliente" placeholder="Nombre del cliente">
+    <section id="productos" class="products">
+        <div class="container">
+            <h2 class="section-title">Productos Populares</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="assets/img/tarjetas.jpg" alt="Tarjetas de Presentación" class="product-image">
+                    <div class="product-info">
+                        <h3>Tarjetas de Presentación</h3>
+                        <p>Diseños personalizados en diferentes acabados.</p>
+                        <a href="pedidos.html" class="btn">Ordenar</a>
+                    </div>
                 </div>
-
-                <div class="field">
-                    <label>Teléfono</label>
-                    <input type="text" name="telefono" placeholder="(000) 000-0000">
+                <div class="product-card">
+                    <img src="assets/img/flyers.jpg" alt="Flyers y Volantes" class="product-image">
+                    <div class="product-info">
+                        <h3>Flyers y Volantes</h3>
+                        <p>Promociona tu negocio con materiales de alta calidad.</p>
+                        <a href="pedidos.html" class="btn">Ordenar</a>
+                    </div>
                 </div>
-
-                <div class="field">
-                    <label>Fecha del pedido</label>
-                    <input type="date" name="fechaPedido">
-                </div>
-
-                <div class="field">
-                    <label>Número de pedido</label>
-                    <input type="text" name="numeroPedido">
-                </div>
-
-                <div class="field large muted">
-                    <label>Lugar de trabajo</label>
-                    <input type="text" name="lugar">
-                </div>
-
-                <div class="field large">
-                    <label>Términos de servicio / Descripción del trabajo</label>
-                    <textarea name="descripcion" rows="4"></textarea>
+                <div class="product-card">
+                    <img src="assets/img/catalogos.jpg" alt="Catálogos" class="product-image">
+                    <div class="product-info">
+                        <h3>Catálogos</h3>
+                        <p>Presentación profesional de tus productos.</p>
+                        <a href="pedidos.html" class="btn">Ordenar</a>
+                    </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Horas / Mano de obra -->
-            <table>
-                <thead>
-                    <tr>
-                        <th>Descripción (Laboral)</th>
-                        <th>Horas</th>
-                        <th>Tasa</th>
-                        <th>Importe</th>
-                    </tr>
-                </thead>
-                <tbody id="laborRows">
-                    <tr>
-                        <td><input type="text" name="lab_desc_1"></td>
-                        <td><input type="number" name="lab_hours_1" step="0.25" value="2.25"></td>
-                        <td><input type="number" name="lab_rate_1" step="0.01" value="32.00"></td>
-                        <td class="right">$<span class="lab_amount">72.00</span></td>
-                    </tr>
-                    <tr>
-                        <td><input type="text" name="lab_desc_2"></td>
-                        <td><input type="number" name="lab_hours_2" step="0.25" value="11.00"></td>
-                        <td><input type="number" name="lab_rate_2" step="0.01" value="40.00"></td>
-                        <td class="right">$<span class="lab_amount">440.00</span></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <!-- Materiales -->
-            <table>
-                <thead>
-                    <tr>
-                        <th>Descripción del material</th>
-                        <th>Cantidad</th>
-                        <th>Precio por</th>
-                        <th>Importe</th>
-                    </tr>
-                </thead>
-                <tbody id="materialRows">
-                    <tr>
-                        <td><input type="text" name="mat_desc_1" value="Material A"></td>
-                        <td><input type="number" name="mat_qty_1" step="1" value="17"></td>
-                        <td><input type="number" name="mat_price_1" step="0.01" value="6.00"></td>
-                        <td class="right">$<span class="mat_amount">102.00</span></td>
-                    </tr>
-                    <tr>
-                        <td><input type="text" name="mat_desc_2" value="Material B"></td>
-                        <td><input type="number" name="mat_qty_2" step="1" value="300"></td>
-                        <td><input type="number" name="mat_price_2" step="0.01" value="2.75"></td>
-                        <td class="right">$<span class="mat_amount">825.00</span></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="clearfix"></div>
-
-            <div class="totals" id="totals">
-                <div class="row"><span>Material</span><strong>$<span id="totalMaterial">927.00</span></strong></div>
-                <div class="row"><span>Subtotal</span><strong>$<span id="subtotal">1,439.00</span></strong></div>
-                <div class="row"><span>Impositivo (%)</span><strong><span id="taxRate">6.148%</span></strong></div>
-                <div class="row"><span>Impuesto total</span><strong>$<span id="taxAmount">88.47</span></strong></div>
-                <div class="row"><span>Otro</span><strong>$<span id="otherCost">150.00</span></strong></div>
-                <div class="row"><span>Total</span><strong>$<span id="grandTotal">1,677.47</span></strong></div>
-            </div>
-
-            <div class="clearfix"></div>
-
-            <div class="signs">
-                <div class="sign">
-                    <strong>Aprobar el trabajo</strong>
-                    <p>Nombre y firma:</p>
+    <section id="libros" class="books">
+        <div class="container">
+            <h2 class="section-title">Libros Publicados</h2>
+            <div class="book-grid">
+                <div class="book-card">
+                    <img src="assets/img/libro1.jpg" alt="Libro 1" class="book-cover">
+                    <div class="book-info">
+                        <h3>Título del Libro</h3>
+                        <p>Autor: Nombre del Autor</p>
+                        <a href="#" class="btn">Ver Detalles</a>
+                    </div>
                 </div>
-                <div class="sign">
-                    <strong>Notificaciones</strong>
-                    <p>Fecha de aprobación:</p>
-                </div>
+                <!-- Más libros aquí -->
             </div>
+        </div>
+    </section>
 
-            <div class="controls">
-                <button type="button" id="calcBtn">Calcular totales</button>
-                <button type="button" id="printBtn">Imprimir</button>
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h3>Contacto</h3>
+                <ul class="footer-links">
+                    <li>Teléfono: (01) 123-4567</li>
+                    <li>Email: info@imprentaonline.com</li>
+                    <li>Dirección: Av. Principal 123</li>
+                </ul>
             </div>
-        </form>
-    </div>
+            <div class="footer-col">
+                <h3>Enlaces Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#libros">Libros</a></li>
+                    <li><a href="pedidos.html">Pedidos</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Horario</h3>
+                <ul class="footer-links">
+                    <li>Lunes a Viernes: 9am - 6pm</li>
+                    <li>Sábados: 9am - 1pm</li>
+                    <li>Domingos: Cerrado</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 
-    <script src="script.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

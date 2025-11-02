@@ -1,0 +1,66 @@
+/* styles.css - extraído de index.html */
+
+/* Reset básico */
+* { box-sizing: border-box; }
+body { font-family: Arial, Helvetica, sans-serif; margin: 0; padding: 20px; background: #f4f6f8; }
+.container { max-width: 900px; margin: 0 auto; background: white; padding: 18px; border: 1px solid #cfd8dc; }
+
+/* Encabezado */
+.header { display:flex; justify-content:space-between; align-items:flex-start; }
+.company { max-width:60%; }
+.company h1 { margin:0; font-size:20px; }
+.company p { margin: 2px 0; font-size:12px; color:#333; }
+.logo { text-align:right; }
+.logo img { max-width:160px; }
+
+h2.title { color: #0b66a3; margin: 8px 0 18px 0; letter-spacing:1px; }
+
+/* Form grid */
+.grid { display: grid; grid-template-columns: 1fr 220px 1fr; gap:8px; }
+.field { border:1px solid #1e73be; padding:6px; background:#e9f3fb; }
+.field label { font-weight:700; font-size:12px; display:block; color:white; background:#1e73be; padding:6px; margin:-6px -6px 6px -6px; }
+.large { grid-column: 1 / -1; }
+
+/* Inputs */
+.field input, .field textarea { width:100%; padding:6px; font-size:14px; border:1px solid #cfd8dc; border-radius:4px; }
+table input, table textarea { width:100%; border:none; padding:0; background:transparent; font-size:13px; }
+
+/* Tables for work/materials */
+table { width:100%; border-collapse:collapse; margin-top:10px; }
+th, td { border:1px solid #1e73be; padding:6px; font-size:13px; }
+th { background:#1e73be; color:white; font-weight:700; }
+.muted { background:#f4faff; }
+
+.right { text-align:right; }
+.center { text-align:center; }
+
+/* Totals box */
+.totals { width:320px; float:right; margin-top:8px; border:1px solid #b0cfe6; }
+.totals .row { display:flex; justify-content:space-between; padding:8px; border-bottom:1px solid #e0eef8; }
+.totals .row strong { color:#0b3b5a; }
+
+/* Footer sign block */
+.signs { display:flex; gap:12px; margin-top:18px; }
+.sign { flex:1; border:1px solid #cfdbe8; padding:10px; min-height:80px; }
+
+/* Controls */
+.controls { margin-top:12px; }
+button { background:#1e73be; color:white; border:none; padding:8px 12px; cursor:pointer; border-radius:4px; }
+button[disabled] { opacity:0.6; cursor:default; }
+
+.clearfix { clear: both; }
+
+/* Print styles */
+@media print {
+    body { background: white; margin:0; }
+    .container { border: none; padding: 0; box-shadow: none; }
+    .controls { display:none !important; }
+    .logo img { max-width:140px; }
+    .totals { float:none; width:100%; margin-top:12px; }
+    .grid { grid-template-columns: 1fr 180px 1fr; gap:4px; }
+    th, td { font-size:11px; }
+    input, textarea, button { border: none; }
+    /* Ensure content uses the full page width when printing */
+    .container { width: auto; max-width: none; }
+    @page { size: A4; margin: 10mm; }
+}
